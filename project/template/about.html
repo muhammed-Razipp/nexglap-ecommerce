@@ -1,0 +1,165 @@
+{% extends 'base.html'%}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | NEXG LAP</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #f2f8ff, #ffffff);
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0d6efd, #007bff);
+      color: white;
+      padding: 100px 15px 70px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .section {
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #212529;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      color: #444;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .features .icon-box {
+      background: white;
+      border-radius: 15px;
+      padding: 30px 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .features .icon-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .features i {
+      font-size: 2.5rem;
+      color: #0d6efd;
+      margin-bottom: 15px;
+    }
+
+    .features h6 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      background-color: #000;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2.5rem;
+      }
+
+      .features .icon-box {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>About NEXG LAP</h1>
+    <p>Your one-stop shop for high-performance laptops</p>
+  </header>
+
+  <section class="section text-center">
+    <div class="container">
+      <h2 class="section-title">Who We Are</h2>
+      <p>
+        <strong>NEXG LAP</strong> is a next-generation laptop e-commerce platform committed to redefining your tech shopping experience. We offer a wide range of high-performance laptops from top brands at competitive prices. Whether you're a student, gamer, creator, or professional — NEXG LAP has the perfect device for your needs.
+      </p>
+      <p>
+        With fast delivery, secure payments, 24/7 support, and easy returns, we ensure a seamless journey from click to doorstep. Explore the future of laptop shopping — only at NEXG LAP.
+      </p>
+    </div>
+  </section>
+
+  <section class="section features bg-light text-center">
+    <div class="container">
+      <h2 class="section-title">Why Choose Us?</h2>
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box">
+            <i class="fas fa-laptop-code"></i>
+            <h6>Latest Models</h6>
+            <p>Top-tier performance from the latest laptop releases.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box">
+            <i class="fas fa-shipping-fast"></i>
+            <h6>Fast Delivery</h6>
+            <p>Speedy and reliable shipping across the country.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box">
+            <i class="fas fa-lock"></i>
+            <h6>Secure Payment</h6>
+            <p>100% secure transactions and data protection.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box">
+            <i class="fas fa-headset"></i>
+            <h6>24/7 Support</h6>
+            <p>Friendly and fast customer service anytime.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    &copy; <script>document.write(new Date().getFullYear());</script> NEXG LAP. All rights reserved.
+  </footer>
+
+</body>
+
+</html>
+
+{% endblock %}

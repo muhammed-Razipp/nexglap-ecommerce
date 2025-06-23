@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Products</title>
+
+  <!-- Bootstrap & Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<div data-aos="fade-up" class="container my-5">
+    <h2 class="text-center text-primary fw-bold mb-5">Order Summary</h2>
+
+    {% if orders %}
+    <div class="row">
+        {% for order in orders %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{{ order.product.image.url }}" alt="{{ order.product.name }}"
+                            class="img-fluid rounded" style="width: 100px; height: auto;">
+                        <div class="ms-3">
+                            <h6 class="text-muted mb-1">Order ID:</h6>
+                            <h5 class="fw-bold text-dark">{{ order.id }}</h5>
+                        </div>
+                    </div>
+
+                    <p class="mb-1"><strong>Product:</strong> {{ order.product.name }}</p>
+                    <p class="mb-1"><strong>Quantity:</strong> {{ order.quantity }}</p>
+                    <p class="mb-1"><strong>Total:</strong> ₹{{ order.total_amount }}</p>
+                    <p class="mb-1"><strong>Address:</strong> {{ order.address }}</p>
+                    <p class="mb-1"><strong>Date:</strong> {{ order.date|date:"d M Y, h:i A" }}</p>
+                    <p class="mb-1"><strong>Payment:</strong> {{ order.payment.stripe_payment_status }}</p>
+                    <p class="mb-3"><strong>Status:</strong>
+                        <span
+                            class="{% if order.order_status == 'Cancelled' %}text-danger{% elif order.order_status == 'Delivered' %}text-success{% else %}text-warning{% endif %}">
+                            {{ order.order_status }}
+                        </span>
+                    </p>
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if "Order ID {{ order.id }}" in message %}
+                    <div class="alert alert-{{ message.tags }} p-2">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if order.order_status != 'Cancelled' %}
+                    {% if not order.cancellation_requested %}
+                    <form method="POST" action="{% url 'request_cancellation' order.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-warning text-white w-100 mt-auto">Request Cancellation</button>
+                    </form>
+                    {% else %}
+                    <p class="text-success text-center mt-auto">Cancellation request activated</p>
+                    {% endif %}
+
+                    {% else %}
+                    <p class="text-danger text-center mt-auto">This order has been cancelled.</p>
+                    {% endif %}
+                    <div class="progress  mt-3">
+                        <div class="progress-bar {% if order.order_status == 'Deliverd' %}bg-success{% elif order.order_status == 'Shipped' %}bg-dark{% elif order.order_status == 'On the way' %}bg-warning{% elif order.order_status == 'Cancelled' %}bg-danger{% else %}bg-secondary{% endif %}"
+                            role="progressbar"
+                            style="width: {% if order.order_status == 'Placed' %}25{% elif order.order_status == 'Packed' %}50{% elif order.order_status == 'Shipped' %}75{% elif order.order_status == 'On the way' %}90{% elif order.order_status == 'Deliverd' %}100{% elif order.order_status == 'Cancelled' %}100{% else %}0{% endif %}%;"
+                            aria-valuenow="{% if order.order_status == 'Placed' %}25{% elif order.order_status == 'Packed' %}50{% elif order.order_status == 'Shipped' %}75{% elif order.order_status == 'On the way' %}90{% elif order.order_status == 'Delivered' %}100{% else %}0{% endif %}"
+                            aria-valuemin="0" aria-valuemax="100">
+                            {{ order.order_status }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <h4 class="text-center text-muted">No recent orders found.</h4>
+    {% endif %}
+</div>
+
+{% endblock %}

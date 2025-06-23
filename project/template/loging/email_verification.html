@@ -1,0 +1,10 @@
+Hi {{ user.first_name }},
+<br><br>
+Please click the link below to verify your email and activate your account:
+<br><br>
+<a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">
+    Activate Account
+</a>
+<br><br>
+If you did not register, please ignore this email.
+
