@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['your-domain.com', 'your-server-ip', 'localhost']
+ALLOWED_HOSTS = ['your-domain.com', 'your-server-ip', 'localhost','127.0.0.1:8000','13.53.75.197']
 
 
 
