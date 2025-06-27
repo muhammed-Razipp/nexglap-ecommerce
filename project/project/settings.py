@@ -27,8 +27,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['your-domain.com', 'your-server-ip', 'localhost']
-
+ALLOWED_HOSTS = ['nexglap.shop', 'localhost','127.0.0.1:8000','13.53.75.197']
+CSRF_TRUSTED_ORIGINS = ['https://nexglap.shop', 'https://www.nexglap.shop']
 
 
 # Application definition
